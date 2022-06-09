@@ -1,4 +1,4 @@
-import { Duration, NestedStack, NestedStackProps } from 'aws-cdk-lib';
+import { Duration, NestedStack, NestedStackProps, Tags } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
@@ -90,6 +90,9 @@ export class ECSStack extends NestedStack {
                 vpc: this.selectedVPC,
             }
         )
+        Tags.of(this.slsDebuggerBrokerECSCluster).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+        )
 
         this.slsDebuggerBrokerECSTaskDefinitionName = `${helpers.ENTITY_PREFIX}ecs-task-definition${helpers.STAGE}`
         this.slsDebuggerBrokerECSTaskDefinition = new ecs.TaskDefinition(
@@ -119,6 +122,9 @@ export class ECSStack extends NestedStack {
                 taskRole: this.slsDebuggerBrokerTaskRole,
                 executionRole: this.slsDebuggerBrokerExecutionRole
             }
+        )
+        Tags.of(this.slsDebuggerBrokerECSTaskDefinition).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
         )
 
         this.slsDebuggerBrokerECSTaskDefinition.addContainer(
@@ -190,6 +196,9 @@ export class ECSStack extends NestedStack {
                     }
                 ]
             }
+        )
+        Tags.of(this.slsDebuggerBrokerFargateService).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
         )
 
         this.slsDebuggerBrokerFargateService.node.addDependency(

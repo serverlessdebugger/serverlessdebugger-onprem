@@ -1,4 +1,4 @@
-import { NestedStack, NestedStackProps } from 'aws-cdk-lib';
+import { NestedStack, NestedStackProps, Tags } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
@@ -66,6 +66,9 @@ export class SecurityStack extends NestedStack {
         ]
       }
     );
+    Tags.of(this.slsDebuggerBrokerExecRole).add(
+      helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+    )
 
     this.slsDebuggerBrokerTaskRoleName = `${helpers.ENTITY_PREFIX}task-role${helpers.STAGE}`
     this.slsDebuggerBrokerTaskRole = new iam.Role(
@@ -76,6 +79,9 @@ export class SecurityStack extends NestedStack {
         assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com')
       }
     );
+    Tags.of(this.slsDebuggerBrokerTaskRole).add(
+      helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+    )
 
     // --------------------------------------------------------------------------------
     //
@@ -100,6 +106,9 @@ export class SecurityStack extends NestedStack {
       ec2.Peer.anyIpv4(),
       ec2.Port.tcp(444)
     );
+    Tags.of(this.slsDebuggerBrokerELBSecGroup).add(
+      helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+    )
 
     // --------------------------------------------------------------------------------
     //
@@ -116,7 +125,6 @@ export class SecurityStack extends NestedStack {
         allowAllOutbound: true
       }
     );
-
     this.slsDebuggerBrokerECSSecGroup.addIngressRule(
       this.slsDebuggerBrokerELBSecGroup,
       ec2.Port.tcp(4444)
@@ -124,6 +132,9 @@ export class SecurityStack extends NestedStack {
     this.slsDebuggerBrokerECSSecGroup.addIngressRule(
       this.slsDebuggerBrokerELBSecGroup,
       ec2.Port.tcp(5555)
+    )
+    Tags.of(this.slsDebuggerBrokerECSSecGroup).add(
+      helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
     )
   }
 }

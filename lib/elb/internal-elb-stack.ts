@@ -1,4 +1,4 @@
-import { Duration, NestedStack, NestedStackProps } from 'aws-cdk-lib';
+import { Duration, NestedStack, NestedStackProps, Tags } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
@@ -62,6 +62,9 @@ export class InternalELBStack extends NestedStack {
                 vpc: this.selectedVPC
             }
         )
+        Tags.of(this.slsDebuggerBrokerInternalELBApplicationTargetGroup).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+        )
 
         // internal-elb-client-target-group
         this.slsDebuggerBrokerInternalELBClientTargetGroupName = `${helpers.ENTITY_PREFIX}in-elb-clt-tg${helpers.STAGE}`
@@ -82,6 +85,9 @@ export class InternalELBStack extends NestedStack {
                 targetType: elb.TargetType.IP,
                 vpc: this.selectedVPC
             }
+        )
+        Tags.of(this.slsDebuggerBrokerInternalELBClientTargetGroup).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
         )
 
         // --------------------------------------------------------------------------------
@@ -104,7 +110,9 @@ export class InternalELBStack extends NestedStack {
                 }
             }
         )
-
+        Tags.of(this.slsDebuggerBrokerInternalELB).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+        )
 
         // --------------------------------------------------------------------------------
         //
@@ -130,6 +138,9 @@ export class InternalELBStack extends NestedStack {
                 protocol: helpers.getProtocol()
             }
         )
+        Tags.of(this.slsDebuggerBrokerInternalELBApplicationListener).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
+        )
 
         // internal-elb-client-listener
         this.slsDebuggerBrokerInternalELBClientListenerName = `${helpers.ENTITY_PREFIX}in-elb-clt-lnr${helpers.STAGE}`
@@ -150,6 +161,9 @@ export class InternalELBStack extends NestedStack {
                 port: helpers.getPort(),
                 protocol: helpers.getProtocol()
             }
+        )
+        Tags.of(this.slsDebuggerBrokerInternalELBClientListener).add(
+            helpers.ENTITY_TAG_KEY, helpers.ENTITY_TAG_VALUE
         )
     }
 }
