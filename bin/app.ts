@@ -117,8 +117,7 @@ new cdk.CfnOutput(
   {
 
     description: `Set this value as \`thundra_agent_lambda_debugger_broker_host\` in your lambda
-                  to use the internal load balancer for communication. This is the recommended
-                  behavior.
+                  to use the internal load balancer for communication.
 
                   You can also set this as the broker host in Thundra debug client configuration
                   if you want to use the internal endpoint. Beware that you would need to connect
@@ -136,7 +135,7 @@ new cdk.CfnOutput(
                   should have access to the internet.
 
                   You can also set this as the broker host in Thundra debug client configuration
-                  if you want to use the external endpoint. This is the recommended behavior.`,
+                  if you want to use the external endpoint.`,
     value: externalELBDNS
   }
 )
