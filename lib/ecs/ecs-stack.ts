@@ -55,7 +55,7 @@ export class ECSStack extends NestedStack {
     slsDebuggerBrokerECSTaskDefinition: ecs.TaskDefinition;
 
     slsDebuggerBrokerFargateServiceName: string;
-    slsDebuggerBrokerFargateService: ecs.FargateService;
+    slsDebuggerBrokerFargateService: ecs.CfnService;
 
     constructor(scope: Construct, id: string, props: ECSStackProps) {
         super(scope, id, props);
@@ -122,7 +122,7 @@ export class ECSStack extends NestedStack {
         )
 
         this.slsDebuggerBrokerECSTaskDefinition.addContainer(
-            process.env.BROKER_CONTAINER_NAME || 'sls-debugger-broker-container',
+            helpers.BROKER_CONTAINER_NAME,
             {
                 image: ecs.ContainerImage.fromRegistry(
                     helpers.ECR_IMAGE_URI
@@ -146,37 +146,52 @@ export class ECSStack extends NestedStack {
         // ECS Service
         //
         this.slsDebuggerBrokerFargateServiceName = `${helpers.ENTITY_PREFIX}fargate-service${helpers.STAGE}`
-        this.slsDebuggerBrokerFargateService = new ecs.FargateService(
+        this.slsDebuggerBrokerFargateService = new ecs.CfnService(
             this,
             this.slsDebuggerBrokerFargateServiceName,
             {
                 serviceName: this.slsDebuggerBrokerFargateServiceName,
-                cluster: this.slsDebuggerBrokerECSCluster,
-                taskDefinition: this.slsDebuggerBrokerECSTaskDefinition,
+
+                cluster: this.slsDebuggerBrokerECSCluster.clusterArn,
+                taskDefinition: this.slsDebuggerBrokerECSTaskDefinition.taskDefinitionArn,
                 desiredCount: 1,
                 // This may need to be adjusted if the container takes a while to start up
-                healthCheckGracePeriod: Duration.seconds(60),
-                assignPublicIp: true,
-                vpcSubnets: {
-                    subnets: this.selectedSubnets
+                healthCheckGracePeriodSeconds: 60,
+                launchType: ecs.LaunchType.FARGATE,
+                networkConfiguration: {
+                    awsvpcConfiguration: {
+                        assignPublicIp: 'ENABLED',
+                        subnets: this.selectedSubnets.map((s) => s.subnetId),
+                        securityGroups: [
+                            this.slsDebuggerBrokerECSSecGroup.securityGroupId
+                        ]
+                    }
                 },
-                securityGroups: [
-                    this.slsDebuggerBrokerECSSecGroup
-                ],
+                loadBalancers: [
+                    {
+                        containerName: helpers.BROKER_CONTAINER_NAME,
+                        containerPort: 5555,
+                        targetGroupArn: this.slsDebuggerBrokerInternalELBClientTargetGroup.targetGroupArn,
+                    },
+                    {
+                        containerName: helpers.BROKER_CONTAINER_NAME,
+                        containerPort: 5555,
+                        targetGroupArn: this.slsDebuggerBrokerExternalELBClientTargetGroup.targetGroupArn,
+                    },
+                    {
+                        containerName: helpers.BROKER_CONTAINER_NAME,
+                        containerPort: 4444,
+                        targetGroupArn: this.slsDebuggerBrokerInternalELBApplicationTargetGroup.targetGroupArn,
+                    },
+                    {
+                        containerName: helpers.BROKER_CONTAINER_NAME,
+                        containerPort: 4444,
+                        targetGroupArn: this.slsDebuggerBrokerExternalELBApplicationTargetGroup.targetGroupArn,
+                    }
+                ]
             }
         )
-        this.slsDebuggerBrokerFargateService.attachToApplicationTargetGroup(
-            this.slsDebuggerBrokerInternalELBClientTargetGroup
-        )
-        this.slsDebuggerBrokerFargateService.attachToApplicationTargetGroup(
-            this.slsDebuggerBrokerExternalELBClientTargetGroup
-        )
-        this.slsDebuggerBrokerFargateService.attachToApplicationTargetGroup(
-            this.slsDebuggerBrokerInternalELBApplicationTargetGroup
-        )
-        this.slsDebuggerBrokerFargateService.attachToApplicationTargetGroup(
-            this.slsDebuggerBrokerExternalELBApplicationTargetGroup
-        )
+
         this.slsDebuggerBrokerFargateService.node.addDependency(
             this.slsDebuggerBrokerInternalELBClientListener
         )

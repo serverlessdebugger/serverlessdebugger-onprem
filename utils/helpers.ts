@@ -1,4 +1,5 @@
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Construct } from 'constructs';
 
 // --------------------------------------------------------------------------------
@@ -27,6 +28,8 @@ export const STAGE: string = '-' + (process.env.STAGE || 'dev')
 
 // Targets the Thundra's repository to fetch the broker's image.
 export const ECR_IMAGE_URI: string = 'public.ecr.aws/i9q5q2b9/thundra-self-hosted-lambda-debug-broker:latest'
+
+export const BROKER_CONTAINER_NAME: string = (process.env.BROKER_CONTAINER_NAME || 'sls-debugger-broker-container')
 
 // --------------------------------------------------------------------------------
 //
@@ -72,9 +75,9 @@ export const getProtocol: Function = (returnWS: Boolean = false): string => {
         }
     } else {
         if (stringToBoolean(process.env.USE_HTTPS)) {
-            protocol = 'https://'
+            protocol = elb.Protocol.HTTPS
         } else {
-            protocol = 'http://'
+            protocol = elb.Protocol.HTTP
         }
     }
 

@@ -108,7 +108,7 @@ if (helpers.stringToBoolean(process.env.CREATE_DNS_MAPPING)) {
   externalELBDNS = `${helpers.getProtocol()}${dnsStack.slsDebuggerBrokerExternalELBDNSRecordName}`
 } else {
   internalELBDNS = `${helpers.getProtocol(true)}${internalELBStack.slsDebuggerBrokerInternalELB.loadBalancerDnsName}`
-  externalELBDNS = `${helpers.getProtocol()}${externalELBStack.slsDebuggerBrokerExternalELB.loadBalancerDnsName}`
+  externalELBDNS = `${helpers.getProtocol(true)}${externalELBStack.slsDebuggerBrokerExternalELB.loadBalancerDnsName}`
 }
 
 new cdk.CfnOutput(

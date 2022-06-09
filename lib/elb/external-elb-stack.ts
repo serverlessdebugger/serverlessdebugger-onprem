@@ -96,7 +96,7 @@ export class ExternalELBStack extends NestedStack {
             this.slsDebuggerBrokerExternalELBName,
             {
                 loadBalancerName: this.slsDebuggerBrokerExternalELBName,
-                internetFacing: false,
+                internetFacing: true,
                 securityGroup: this.slsDebuggerBrokerELBSecGroup,
                 vpc: this.selectedVPC,
                 vpcSubnets: {
