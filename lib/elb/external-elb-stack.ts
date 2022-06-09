@@ -41,7 +41,9 @@ export class ExternalELBStack extends NestedStack {
         //
         // ELB Target Groups
         //
-        this.slsDebuggerBrokerExternalELBApplicationTargetGroupName = `${helpers.ENTITY_PREFIX}external-elb-application-target-group${helpers.STAGE}`
+
+        // external-elb-application-target-group
+        this.slsDebuggerBrokerExternalELBApplicationTargetGroupName = `${helpers.ENTITY_PREFIX}ex-elb-app-tg${helpers.STAGE}`
         this.slsDebuggerBrokerExternalELBApplicationTargetGroup = new elb.ApplicationTargetGroup(
             this,
             this.slsDebuggerBrokerExternalELBApplicationTargetGroupName,
@@ -61,7 +63,8 @@ export class ExternalELBStack extends NestedStack {
             }
         )
 
-        this.slsDebuggerBrokerExternalELBClientTargetGroupName = `${helpers.ENTITY_PREFIX}external-elb-client-target-group${helpers.STAGE}`
+        // external-elb-client-target-group
+        this.slsDebuggerBrokerExternalELBClientTargetGroupName = `${helpers.ENTITY_PREFIX}ex-elb-clt-tg${helpers.STAGE}`
         this.slsDebuggerBrokerExternalELBClientTargetGroup = new elb.ApplicationTargetGroup(
             this,
             this.slsDebuggerBrokerExternalELBClientTargetGroupName,
@@ -85,7 +88,9 @@ export class ExternalELBStack extends NestedStack {
         //
         // ELB
         //
-        this.slsDebuggerBrokerExternalELBName = `${helpers.ENTITY_PREFIX}external-elb${helpers.STAGE}`
+
+        // external-elb
+        this.slsDebuggerBrokerExternalELBName = `${helpers.ENTITY_PREFIX}ex-elb${helpers.STAGE}`
         this.slsDebuggerBrokerExternalELB = new elb.ApplicationLoadBalancer(
             this,
             this.slsDebuggerBrokerExternalELBName,
@@ -105,7 +110,9 @@ export class ExternalELBStack extends NestedStack {
         //
         // ELB Listeners
         //
-        this.slsDebuggerBrokerExternalELBApplicationListenerName = `${helpers.ENTITY_PREFIX}external-elb-application-listener${helpers.STAGE}`
+
+        // external-elb-application-listener
+        this.slsDebuggerBrokerExternalELBApplicationListenerName = `${helpers.ENTITY_PREFIX}ex-elb-app-lnr${helpers.STAGE}`
         this.slsDebuggerBrokerExternalELBApplicationListener = new elb.ApplicationListener(
             this,
             this.slsDebuggerBrokerExternalELBApplicationListenerName,
@@ -124,7 +131,8 @@ export class ExternalELBStack extends NestedStack {
             }
         )
 
-        this.slsDebuggerBrokerExternalELBClientListenerName = `${helpers.ENTITY_PREFIX}external-elb-client-listener${helpers.STAGE}`
+        // external-elb-client-listener
+        this.slsDebuggerBrokerExternalELBClientListenerName = `${helpers.ENTITY_PREFIX}ex-elb-clt-lnr${helpers.STAGE}`
         this.slsDebuggerBrokerExternalELBClientListener = new elb.ApplicationListener(
             this,
             this.slsDebuggerBrokerExternalELBClientListenerName,

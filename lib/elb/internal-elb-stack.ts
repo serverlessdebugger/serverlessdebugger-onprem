@@ -41,7 +41,9 @@ export class InternalELBStack extends NestedStack {
         //
         // ELB Target Groups
         //
-        this.slsDebuggerBrokerInternalELBApplicationTargetGroupName = `${helpers.ENTITY_PREFIX}internal-elb-application-target-group${helpers.STAGE}`
+
+        // internal-elb-application-target-group
+        this.slsDebuggerBrokerInternalELBApplicationTargetGroupName = `${helpers.ENTITY_PREFIX}in-elb-app-tg${helpers.STAGE}`
         this.slsDebuggerBrokerInternalELBApplicationTargetGroup = new elb.ApplicationTargetGroup(
             this,
             this.slsDebuggerBrokerInternalELBApplicationTargetGroupName,
@@ -61,7 +63,8 @@ export class InternalELBStack extends NestedStack {
             }
         )
 
-        this.slsDebuggerBrokerInternalELBClientTargetGroupName = `${helpers.ENTITY_PREFIX}internal-elb-client-target-group${helpers.STAGE}`
+        // internal-elb-client-target-group
+        this.slsDebuggerBrokerInternalELBClientTargetGroupName = `${helpers.ENTITY_PREFIX}in-elb-clt-tg${helpers.STAGE}`
         this.slsDebuggerBrokerInternalELBClientTargetGroup = new elb.ApplicationTargetGroup(
             this,
             this.slsDebuggerBrokerInternalELBClientTargetGroupName,
@@ -85,7 +88,9 @@ export class InternalELBStack extends NestedStack {
         //
         // ELB
         //
-        this.slsDebuggerBrokerInternalELBName = `${helpers.ENTITY_PREFIX}internal-elb${helpers.STAGE}`
+
+        // internal-elb
+        this.slsDebuggerBrokerInternalELBName = `${helpers.ENTITY_PREFIX}in-elb${helpers.STAGE}`
         this.slsDebuggerBrokerInternalELB = new elb.ApplicationLoadBalancer(
             this,
             this.slsDebuggerBrokerInternalELBName,
@@ -105,7 +110,9 @@ export class InternalELBStack extends NestedStack {
         //
         // ELB Listeners
         //
-        this.slsDebuggerBrokerInternalELBApplicationListenerName = `${helpers.ENTITY_PREFIX}internal-elb-application-listener${helpers.STAGE}`
+
+        // internal-elb-application-listener
+        this.slsDebuggerBrokerInternalELBApplicationListenerName = `${helpers.ENTITY_PREFIX}in-elb-app-lnr${helpers.STAGE}`
         this.slsDebuggerBrokerInternalELBApplicationListener = new elb.ApplicationListener(
             this,
             this.slsDebuggerBrokerInternalELBApplicationListenerName,
@@ -124,7 +131,8 @@ export class InternalELBStack extends NestedStack {
             }
         )
 
-        this.slsDebuggerBrokerInternalELBClientListenerName = `${helpers.ENTITY_PREFIX}internal-elb-client-listener${helpers.STAGE}`
+        // internal-elb-client-listener
+        this.slsDebuggerBrokerInternalELBClientListenerName = `${helpers.ENTITY_PREFIX}in-elb-clt-lnr${helpers.STAGE}`
         this.slsDebuggerBrokerInternalELBClientListener = new elb.ApplicationListener(
             this,
             this.slsDebuggerBrokerInternalELBClientListenerName,
