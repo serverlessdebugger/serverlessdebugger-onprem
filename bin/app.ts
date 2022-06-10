@@ -104,8 +104,8 @@ if (helpers.stringToBoolean(process.env.CREATE_DNS_MAPPING)) {
     'We need the ELBs as a target for our DNS records.'
   )
 
-  internalELBDNS = `${helpers.getProtocolAsString(false)}${dnsStack.slsDebuggerBrokerInternalELBDNSRecordName}`
-  externalELBDNS = `${helpers.getProtocolAsString(false)}${dnsStack.slsDebuggerBrokerExternalELBDNSRecordName}`
+  internalELBDNS = `${helpers.getProtocolAsString(true)}${dnsStack.slsDebuggerBrokerInternalELBDNSRecordName}`
+  externalELBDNS = `${helpers.getProtocolAsString(true)}${dnsStack.slsDebuggerBrokerExternalELBDNSRecordName}`
 } else {
   internalELBDNS = `${helpers.getProtocolAsString(true)}${internalELBStack.slsDebuggerBrokerInternalELB.loadBalancerDnsName}`
   externalELBDNS = `${helpers.getProtocolAsString(true)}${externalELBStack.slsDebuggerBrokerExternalELB.loadBalancerDnsName}`
