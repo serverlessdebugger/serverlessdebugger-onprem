@@ -32,14 +32,14 @@ export const validateEnvironmentVariables: Function = (): void => {
         }
 
         // Check if PUBLIC_BROKER_SUBDOMAIN is set
-        if (process.env.PUBLIC_BROKER_SUBDOMAIN) {
+        if (process.env.PUBLIC_BROKER_SUBDOMAIN === undefined) {
             validationErrors.push(
                 'Make sure to set PUBLIC_BROKER_SUBDOMAIN in .env or set CREATE_DNS_MAPPING to false'
             )
         }
 
         // Check if INTERNAL_BROKER_SUBDOMAIN is set
-        if (process.env.INTERNAL_BROKER_SUBDOMAIN) {
+        if (process.env.INTERNAL_BROKER_SUBDOMAIN === undefined) {
             validationErrors.push(
                 'Make sure to set INTERNAL_BROKER_SUBDOMAIN in .env or set CREATE_DNS_MAPPING to false'
             )
