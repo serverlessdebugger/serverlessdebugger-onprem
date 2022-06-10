@@ -64,7 +64,7 @@ export const getPort: Function = (): Number => {
     return port;
 }
 
-export const getProtocol: Function = (returnWS: Boolean = false): string => {
+export const getProtocolAsString = (returnWS: Boolean = false): string => {
     let protocol: string;
 
     if (returnWS) {
@@ -75,10 +75,22 @@ export const getProtocol: Function = (returnWS: Boolean = false): string => {
         }
     } else {
         if (stringToBoolean(process.env.USE_HTTPS)) {
-            protocol = elb.Protocol.HTTPS
+            protocol = 'https://'
         } else {
-            protocol = elb.Protocol.HTTP
+            protocol = 'http://'
         }
+    }
+
+    return protocol;
+}
+
+export const getProtocolAsEnum = (returnWS: Boolean = false): elb.ApplicationProtocol => {
+    let protocol: elb.ApplicationProtocol;
+
+    if (stringToBoolean(process.env.USE_HTTPS)) {
+        protocol = elb.ApplicationProtocol.HTTPS
+    } else {
+        protocol = elb.ApplicationProtocol.HTTP
     }
 
     return protocol;

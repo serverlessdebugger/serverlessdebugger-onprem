@@ -31,17 +31,17 @@ export const validateEnvironmentVariables: Function = (): void => {
             )
         }
 
-        // Check if PUBLIC_BROKER_SUBDOMAIN is set
-        if (process.env.PUBLIC_BROKER_SUBDOMAIN === undefined) {
+        // Check if BROKER_PUBLIC_SUBDOMAIN is set
+        if (process.env.BROKER_PUBLIC_SUBDOMAIN === undefined) {
             validationErrors.push(
-                'Make sure to set PUBLIC_BROKER_SUBDOMAIN in .env or set CREATE_DNS_MAPPING to false'
+                'Make sure to set BROKER_PUBLIC_SUBDOMAIN in .env or set CREATE_DNS_MAPPING to false'
             )
         }
 
-        // Check if INTERNAL_BROKER_SUBDOMAIN is set
-        if (process.env.INTERNAL_BROKER_SUBDOMAIN === undefined) {
+        // Check if BROKER_PRIVATE_SUBDOMAIN is set
+        if (process.env.BROKER_PRIVATE_SUBDOMAIN === undefined) {
             validationErrors.push(
-                'Make sure to set INTERNAL_BROKER_SUBDOMAIN in .env or set CREATE_DNS_MAPPING to false'
+                'Make sure to set BROKER_PRIVATE_SUBDOMAIN in .env or set CREATE_DNS_MAPPING to false'
             )
         }
     }

@@ -135,7 +135,7 @@ export class ExternalELBStack extends NestedStack {
                     this.slsDebuggerBrokerExternalELBApplicationTargetGroup
                 ]),
                 port: 444,
-                protocol: helpers.getProtocol()
+                protocol: helpers.getProtocolAsEnum()
             }
         )
         Tags.of(this.slsDebuggerBrokerExternalELBApplicationListener).add(
@@ -159,7 +159,7 @@ export class ExternalELBStack extends NestedStack {
                     this.slsDebuggerBrokerExternalELBClientTargetGroup
                 ]),
                 port: helpers.getPort(),
-                protocol: helpers.getProtocol()
+                protocol: helpers.getProtocolAsEnum()
             }
         )
         Tags.of(this.slsDebuggerBrokerExternalELBClientListener).add(

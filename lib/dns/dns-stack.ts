@@ -37,8 +37,8 @@ export class DNSStack extends NestedStack {
             }
         )
 
-        this.slsDebuggerBrokerInternalELBDNSRecordName = `${process.env.INTERNAL_BROKER_SUBDOMAIN}.${process.env.HOSTED_ZONE_NAME}`
-        this.slsDebuggerBrokerExternalELBDNSRecordName = `${process.env.EXTERNAL_BROKER_SUBDOMAIN}.${process.env.HOSTED_ZONE_NAME}`
+        this.slsDebuggerBrokerInternalELBDNSRecordName = `${process.env.BROKER_PRIVATE_SUBDOMAIN}.${process.env.HOSTED_ZONE_NAME}`
+        this.slsDebuggerBrokerExternalELBDNSRecordName = `${process.env.BROKER_PUBLIC_SUBDOMAIN}.${process.env.HOSTED_ZONE_NAME}`
 
         new route53.CnameRecord(
             this,

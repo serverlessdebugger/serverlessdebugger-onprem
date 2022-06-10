@@ -65,5 +65,5 @@ In an architectural view, self-hosted version can be used in multiple ways depen
 | THUNDRA_LICENSE_KEY       | **Required**  | -             | -                     | Thundra License Key for the self-hosted ServerlessDebugger. [Contact Us](https://www.serverlessdebugger.com/contact-us) if needed.             |
 | CREATE_DNS_MAPPING        | Optional      | false         | -                     | Sets a custom domain for the self-hosted broker.          |
 | HOSTED_ZONE_NAME          | Optional      | -             | CREATE_DNS_MAPPING    | Hosted zone name to use. Requires `CREATE_DNS_MAPPING` to be set to true.            |
-| PUBLIC_BROKER_SUBDOMAIN   | Optional      | -             | CREATE_DNS_MAPPING    | Subdomain for the internet facing ELB to use. Requires `CREATE_DNS_MAPPING` to be set to true.             |
-| INTERNAL_BROKER_SUBDOMAIN | Optional      | -             | CREATE_DNS_MAPPING    | Subdomain for the internal ELB to use. Requires `CREATE_DNS_MAPPING` to be set to true.             |
+| BROKER_PUBLIC_SUBDOMAIN   | Optional      | -             | CREATE_DNS_MAPPING    | Subdomain for the internet facing ELB to use. Requires `CREATE_DNS_MAPPING` to be set to true.             |
+| BROKER_PRIVATE_SUBDOMAIN  | Optional      | -             | CREATE_DNS_MAPPING    | Subdomain for the internal ELB to use. Requires `CREATE_DNS_MAPPING` to be set to true.             |
