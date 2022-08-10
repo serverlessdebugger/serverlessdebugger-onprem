@@ -27,7 +27,7 @@ export const ENTITY_PREFIX: string = (process.env.ENTITY_PREFIX || 'slsd') + '-'
 export const STAGE: string = '-' + (process.env.STAGE || 'dev')
 
 // Targets the Thundra's repository to fetch the broker's image.
-export const ECR_IMAGE_URI: string = 'public.ecr.aws/i9q5q2b9/thundra-self-hosted-lambda-debug-broker:latest'
+export const ECR_IMAGE_URI: string = 'public.ecr.aws/k8z9p6l4/serverlessdebugger-onprem-broker:latest'
 
 export const BROKER_CONTAINER_NAME: string = (process.env.BROKER_CONTAINER_NAME || 'sls-debugger-broker-container')
 
