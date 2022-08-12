@@ -44,7 +44,7 @@ export class DNSStack extends NestedStack {
             this,
             'internal-elb-cname-record',
             {
-                comment: 'Creating records for private elb of Thundra lambda debug broker',
+                comment: 'Creating records for private elb of ServerlessDebugger broker',
                 zone: this.selectedHostedZone,
                 domainName: this.slsDebuggerBrokerInternalELB.loadBalancerDnsName,
                 recordName: this.slsDebuggerBrokerInternalELBDNSRecordName,
@@ -56,7 +56,7 @@ export class DNSStack extends NestedStack {
             this,
             'external-elb-cname-record',
             {
-                comment: 'Creating records for public elb of Thundra lambda debug broker',
+                comment: 'Creating records for public elb of ServerlessDebugger broker',
                 zone: this.selectedHostedZone,
                 domainName: this.slsDebuggerBrokerExternalELB.loadBalancerDnsName,
                 recordName: this.slsDebuggerBrokerExternalELBDNSRecordName,

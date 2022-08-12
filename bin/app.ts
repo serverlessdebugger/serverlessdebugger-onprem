@@ -119,7 +119,7 @@ new cdk.CfnOutput(
     description: `Set this value as \`thundra_agent_lambda_debugger_broker_host\` in your lambda
                   to use the internal load balancer for communication.
 
-                  You can also set this as the broker host in Thundra debug client configuration
+                  You can also set this as the broker host in ServerlessDebugger debug client configuration
                   if you want to use the internal endpoint. Beware that you would need to connect
                   to your VPC in order to access this endpoint.`,
     value: internalELBDNS
@@ -134,7 +134,7 @@ new cdk.CfnOutput(
                   to use the external load balancer for communication. Beware that your lambda
                   should have access to the internet.
 
-                  You can also set this as the broker host in Thundra debug client configuration
+                  You can also set this as the broker host in ServerlessDebugger debug client configuration
                   if you want to use the external endpoint.`,
     value: externalELBDNS
   }
@@ -144,7 +144,7 @@ new cdk.CfnOutput(
   slsDebuggerStack,
   `${helpers.ENTITY_PREFIX}broker-port${helpers.STAGE}`,
   {
-    description: 'Set this as the broker port in Thundra debug client configuration.',
+    description: 'Set this as the broker port in ServerlessDebugger debug client configuration.',
     value: helpers.getPort()
   }
 )

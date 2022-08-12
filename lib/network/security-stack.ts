@@ -120,7 +120,7 @@ export class SecurityStack extends NestedStack {
       this.slsDebuggerBrokerECSSecGroupName,
       {
         securityGroupName: this.slsDebuggerBrokerECSSecGroupName,
-        description: 'Thundra Lambda Debug Broker Service ELB Security Group',
+        description: 'ServerlessDebugger Broker Service ELB Security Group',
         vpc: this.selectedVPC,
         allowAllOutbound: true
       }
