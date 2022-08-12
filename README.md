@@ -1,6 +1,6 @@
 # ServerlessDebugger Self-Hosted CDK
 
-This is the self-hosted version of Thundra's [ServerlessDebugger](https://serverlessdebugger.com). ServerlessDebugger brings the traditional debugging experience to the AWS Lambdas. It comes in as a VSCode extension and can be installed on your VSCode IDE in seconds and enable you to put breakpoints in your Lambda functions. All done with no code changes!
+This is the self-hosted version of [ServerlessDebugger](https://serverlessdebugger.com). ServerlessDebugger brings the traditional debugging experience to the AWS Lambdas. It comes in as a VSCode extension and can be installed on your VSCode IDE in seconds and enable you to put breakpoints in your Lambda functions. All done with no code changes!
 
 Apart from the SaaS version of the ServerlessDebugger, we offer a way to install the debug broker into your own AWS account to satisfy your needs. To get the pricing and the license key for the self-hosted version, visit our [Pricing Page](https://www.serverlessdebugger.com/pricing).
 
@@ -31,7 +31,7 @@ You can start by just copying the `sample.env` as `.env` and move on from there.
 cp sample.env .env
 ```
 
-In the `.env` file, we've documented which variables are needed and why. Some parts of this stack is optional and some are required. `SUBNET_IDS` and `THUNDRA_LICENSE_KEY` must be specified in the `.env` file. See [below](#environment-variables) for more details.
+In the `.env` file, we've documented which variables are needed and why. Some parts of this stack is optional and some are required. `SUBNET_IDS` and `SLSDEBUG_LICENSE_KEY` must be specified in the `.env` file. See [below](#environment-variables) for more details.
 
 Once the necessary environment variables are set, you can run the following commands in order.
 
@@ -109,7 +109,7 @@ In an architectural view, self-hosted version can be used in multiple ways depen
 | Variable Name             | Expectation   | Default       | Requires              | Description   |
 |---                        |---            |---            |---                    |---            |
 | SUBNET_IDS                | **Required**  | -             | At least 2 subnet ids | Subnets to use to deploy the application. Requires at least 2 subnet ids.            |
-| THUNDRA_LICENSE_KEY       | **Required**  | -             | -                     | Thundra License Key for the self-hosted ServerlessDebugger. [Contact Us](https://www.serverlessdebugger.com/contact-us) if needed.             |
+| SLSDEBUG_LICENSE_KEY      | **Required**  | -             | -                     | ServerlessDebugger License Key for the self-hosted ServerlessDebugger. [Contact Us](https://www.serverlessdebugger.com/contact-us) if needed.             |
 | STAGE                     | Optional      | dev           | -                     | Sets a suffix to all the resources. Used to separate environments, such as dev, staging, prod. Beware of that some resources have a name limitation of 32 characters. Can set this to and empty string.        |
 | ENTITY_PREFIX             | Optional      | slsd          | -                     | Sets a prefix to all the resources. Used to differentiate ServerlessDebugger resources from others. Beware of that some resources have a name limitation of 32 characters. Can set this to and empty string.        |
 | USE_HTTPS                 | Optional      | false         | -                     | Decide if the broker endpoints should use SSL encryption. Expects `SSL_CERTIFICATE_ARN`.          |

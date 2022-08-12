@@ -142,7 +142,7 @@ export class ECSStack extends NestedStack {
                     }
                 ],
                 environment: {
-                    THUNDRA_LICENSE_KEY: process.env.THUNDRA_LICENSE_KEY || ''
+                    SLSDEBUG_LICENSE_KEY: process.env.SLSDEBUG_LICENSE_KEY || ''
                 }
             }
         )

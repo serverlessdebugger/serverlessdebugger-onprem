@@ -11,9 +11,9 @@ export const validateEnvironmentVariables: Function = (): void => {
         }
     }
 
-    if (process.env.THUNDRA_LICENSE_KEY === undefined) {
+    if (process.env.SLSDEBUG_LICENSE_KEY === undefined) {
         validationErrors.push(
-            'Make sure to set THUNDRA_LICENSE_KEY in .env'
+            'Make sure to set SLSDEBUG_LICENSE_KEY in .env'
         )
     }
 
